@@ -5,20 +5,24 @@ import java.util.Calendar;
 import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
+import payrollcasestudy.transactions.Transaction;
 
-public class AddServiceChargeTransaction {
-
-	PayrollDatabase database = PayrollDatabase.globalPayrollDatabase;
+public class AddServiceChargeTransaction implements Transaction{
+	private int memberId;
+	private Calendar date;
+	private double amount;
 
 	public AddServiceChargeTransaction(int memberId, Calendar date, double amount) {
-		Employee unionMember = database.getUnionMember(memberId);
-		UnionAffiliation unionAffiliation = unionMember.getUnionAffiliation();
-		unionAffiliation.addServiceCharge(date, amount);
+		this.memberId = memberId;
+		this.date = date;
+		this.amount = amount;
 	}
 
 	public void execute() {
-		// TODO Auto-generated method stub
-		
+		Employee unionMember = PayrollDatabase.globalPayrollDatabase.getUnionMember(memberId);
+		if(unionMember!=null){
+			UnionAffiliation unionAffiliation = unionMember.getUnionAffiliation();
+			unionAffiliation.addServiceCharge(date, amount);
+		}
 	}
-
 }
