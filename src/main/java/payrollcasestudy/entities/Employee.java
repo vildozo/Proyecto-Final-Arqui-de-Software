@@ -14,12 +14,13 @@ public class Employee {
     private int employeeId;
     private String name;
     private String address;
-	private UnionAffiliation unionAffiliation = UnionAffiliation.NO_AFFILIATION;
+	private UnionAffiliation unionAffiliation;
 
     public Employee(int employeeId, String name, String address) {
         this.employeeId = employeeId;
         this.name = name;
         this.address = address;
+        unionAffiliation = UnionAffiliation.NO_AFFILIATION;
     }
 
     public PaymentClassification getPaymentClassification() {

@@ -8,14 +8,10 @@ import payrollcasestudy.entities.ServiceCharge;
 
 public class UnionAffiliation {
 	
-	private int memberId;
-	private double dues;
 	Map<Calendar, ServiceCharge> serviceCharges = new HashMap<Calendar, ServiceCharge>();
-	public static final UnionAffiliation NO_AFFILIATION = new UnionAffiliation(0, 0);
+	public static UnionAffiliation NO_AFFILIATION = null;
 
-	public UnionAffiliation(int memberId, double dues) {
-		this.memberId = memberId;
-		this.dues = dues;
+	public UnionAffiliation(int memberId, double amount) {
 	}
 
 	public ServiceCharge getServiceCharge(Calendar date) {
