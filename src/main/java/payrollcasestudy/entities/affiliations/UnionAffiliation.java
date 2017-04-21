@@ -9,7 +9,7 @@ import payrollcasestudy.entities.ServiceCharge;
 public class UnionAffiliation {
 	
 	Map<Calendar, ServiceCharge> serviceCharges = new HashMap<Calendar, ServiceCharge>();
-	public static UnionAffiliation NO_AFFILIATION = null;
+	public static final UnionAffiliation NO_AFFILIATION = null;
 
 	public UnionAffiliation(int memberId, double amount) {
 	}
