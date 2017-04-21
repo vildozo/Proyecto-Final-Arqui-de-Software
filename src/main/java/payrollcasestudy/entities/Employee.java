@@ -83,8 +83,7 @@ public class Employee {
 	}
 
 	public void setUnionAffiliation(UnionAffiliation unionAffiliation) {
-		// TODO Auto-generated method stub
-		
+		this.unionAffiliation = unionAffiliation;
 	}
 
 }
