@@ -4,20 +4,19 @@ import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 
 public class ChangeMemberTransaction extends ChangeEmployeeTransaction{
-
-	private int memberId;
-	private double amount;
-
-	public ChangeMemberTransaction(int employeeId, int memberId, double amount) {
+	int employeeId;
+	int memberId; 
+	double weeklyUnionDues;
+	
+	public ChangeMemberTransaction(int employeeId, int memberId, double weeklyUnionDues) {
 		super(employeeId);
 		this.memberId = memberId;
-		this.amount = amount;
+		this.weeklyUnionDues = weeklyUnionDues;
 	}
 
 	@Override
 	public void changeEmployee(Employee employee) {
-		employee.setUnionAffiliation(new UnionAffiliation(memberId, amount));
-		database.addUnionMember(memberId, employee);
+		employee.setUnionAffiliation(new UnionAffiliation(memberId, weeklyUnionDues));
+	    database.addUnionMember(memberId, employee);
 	}
-
 }

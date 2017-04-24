@@ -15,5 +15,4 @@ public class ChangeNoMemberTransaction extends ChangeEmployeeTransaction {
 		employee.setUnionAffiliation(UnionAffiliation.NO_AFFILIATION);
 		database.deleteUnionMember(memberId);
 	}
-
 }
