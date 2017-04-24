@@ -1,6 +1,7 @@
 package payrollcasestudy.transactions.change;
 
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.transactions.Transaction;
 
 public class ChangeMemberTransaction extends ChangeEmployeeTransaction{
@@ -15,14 +16,10 @@ public class ChangeMemberTransaction extends ChangeEmployeeTransaction{
 		this.weeklyUnionDues = weeklyUnionDues;
 	}
 
-	public void execute() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void changeEmployee(Employee employee) {
-		// TODO Auto-generated method stub
+	        employee.setUnionAffiliation(new UnionAffiliation(memberId, weeklyUnionDues));
+	        database.addUnionMember(memberId, employee);
 		
 	}
 	
