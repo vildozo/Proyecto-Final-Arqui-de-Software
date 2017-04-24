@@ -1,5 +1,5 @@
 package payrollcasestudy.transactions.change;
 
-public class ChangeMemberTransaction {
+public class ChangeTipoMemberTransaction {
 
 }
