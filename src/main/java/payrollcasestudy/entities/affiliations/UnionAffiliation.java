@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.ServiceCharge;
 
 public class UnionAffiliation {
@@ -31,5 +32,9 @@ public class UnionAffiliation {
 
 	public double getDues() {
 		return amount;
+	}
+
+	public double calculateDeduction(PayCheck payCheck) {
+		return 0;
 	}
 }
