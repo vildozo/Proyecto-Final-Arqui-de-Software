@@ -1,13 +1,16 @@
 
 import static spark.Spark.*;
 
+import payrollcasestudy.entities.Employee;
+import payrollcasestudy.boundaries.PayrollDatabase;
+
 public class Main {
 	public static void main(String[] args) {
 		get("/", (request, response) -> hola());
 		post("/hola", (request, response) -> responder_saludo(request.queryParams("nombre_saludo")));
 		get("/Arquitectura", (request, response) -> "Hola Arquitectura");
 		get("/register_employee", (request, response) -> empleado());
-		post("/registered_employee", (request, response) -> responder_registro(request.queryParams("employee_Name"),request.queryParams("address") ));
+		post("/registered_employee", (request, response) -> responder_registro(request.queryParams("employee_CI"),request.queryParams("employee_Name"),request.queryParams("address") ));
 	}
 
 	private static String responder_saludo(String nombre){
@@ -15,8 +18,13 @@ public class Main {
 		return "Hola "+nombre;
 	}
 	
-	private static String responder_registro(String nombre,String address){
+	private static String responder_registro( String employee_CI,String nombre,String address){
+		int ci;
+		PayrollDatabase database = PayrollDatabase.globalPayrollDatabase;
 		System.out.println("----------RESPONDIENDO---------");
+		ci= Integer.parseInt(employee_CI);
+		Employee employee= new Employee(ci,nombre,address);
+		database.addEmployee(ci, employee);
 		return "El nuevo empleado es "+nombre+" y su direccion es "+ address;
 	}
 
@@ -36,6 +44,9 @@ public class Main {
 		return "<html>"
 				+ "<body>"
 				+ "<form method='post' action='/registered_employee'>" 
+				+ "<label>CI:</label>"
+				+ "<input type='text' name='employee_CI'>"
+				+ "<br>"
 				+ "<label>Name:</label>"
 				+ "<input type='text' name='employee_Name'>"
 				+ "<br>"
