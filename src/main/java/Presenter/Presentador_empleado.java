@@ -6,6 +6,7 @@ import payrollcasestudy.boundaries.PayrollDatabase;
 import spark.template.velocity.VelocityTemplateEngine;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 
 public class Presentador_empleado {
 	public static String empleado() {
@@ -30,7 +31,7 @@ public class Presentador_empleado {
 		if (payment=="commissioned")
 			employee.setPaymentClassification(null);
 		if (payment=="salaried")
-			employee.setPaymentClassification(null);
+			employee.setPaymentClassification(new SalariedClassification(Double.parseDouble(amount)));
 		database.addEmployee(ci, employee);
 		vte.asignarDireccionTemplate("src/main/java/Presenter/empleado.vt");
 		vte.agregarContext("ci", Integer.toString(ci));
