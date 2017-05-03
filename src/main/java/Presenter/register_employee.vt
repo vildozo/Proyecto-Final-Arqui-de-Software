@@ -26,6 +26,10 @@
 			</td>
 		</tr>
 		<tr>
+			<td>Amount by type</td>
+			<td><input type='text' name='amount'></td>
+		</tr>
+		<tr>
 			<td></td>
 			<td><input type='submit' value='Create employee' style='background-color: red'></td>
 		</tr>
