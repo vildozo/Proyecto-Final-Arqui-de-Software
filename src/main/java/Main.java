@@ -46,7 +46,7 @@ public class Main {
 		get("/Arquitectura", (request, response) -> "Hola Arquitectura");
 		
 		get("/register_employee", (request, response) -> Presentador_empleado.empleado());
-		post("/registered_employee", (request, response) -> Presentador_empleado.responder_registro(request.queryParams("employee_CI"),request.queryParams("employee_Name"),request.queryParams("address") ));
+		post("/registered_employee", (request, response) -> Presentador_empleado.responder_registro(request.queryParams("employee_CI"),request.queryParams("employee_Name"),request.queryParams("address"),request.queryParams("payment") ));
 		
 		//get("/Show_employees", (request, response) -> MostrarEmpleados();
 			
