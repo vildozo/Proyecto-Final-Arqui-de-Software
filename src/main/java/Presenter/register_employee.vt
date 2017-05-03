@@ -1,0 +1,37 @@
+<html>
+<body>
+<form method='post' action='/registered_employee'> 
+<table>
+		<tr>
+			<td><label>CI:</label></td>
+			<td><input type='text' name='employee_CI'></td>
+		</tr>
+		<tr>
+			<td><label>Name:</label></td>
+			<td><input type='text' name='employee_Name'></td>
+		</tr>
+		<tr>
+			<td><label>Address:</label></td>
+			<td><input type='text' name='address'></td>
+		</tr>
+		<tr>
+			<td>Salary Type:</td>
+				
+			<td>
+				<form action="">
+				  <input type="radio" name="payment" value="hourly"> Hourly<br>
+				  <input type="radio" name="payment" value="commissioned"> Commissioned<br>
+				  <input type="radio" name="payment" value="salaried"> Salaried
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type='submit' value='Create employee' style='background-color: red'></td>
+		</tr>
+		
+	</table>
+
+
+</body>
+</html>
