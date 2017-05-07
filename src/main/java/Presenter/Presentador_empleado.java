@@ -33,7 +33,7 @@ public class Presentador_empleado {
 		if (payment=="salaried")
 			employee.setPaymentClassification(new SalariedClassification(Double.parseDouble(amount)));
 		database.addEmployee(ci, employee);
-		vte.asignarDireccionTemplate("resources/templates/empleado.vt");
+		vte.asignarDireccionTemplate("templates/empleado.vt");
 		vte.agregarContext("ci", Integer.toString(ci));
 		vte.agregarContext("nombre", nombre);
 		vte.agregarContext("address", address);

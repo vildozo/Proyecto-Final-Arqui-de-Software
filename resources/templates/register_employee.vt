@@ -1,41 +1,63 @@
 <html>
-<body>
-<form method='post' action='/registered_employee'> 
-<table>
-		<tr>
-			<td><label>CI:</label></td>
-			<td><input type='text' name='employee_CI'></td>
-		</tr>
-		<tr>
-			<td><label>Name:</label></td>
-			<td><input type='text' name='employee_Name'></td>
-		</tr>
-		<tr>
-			<td><label>Address:</label></td>
-			<td><input type='text' name='address'></td>
-		</tr>
-		<tr>
-			<td>Salary Type:</td>
-				
-			<td>
-				<form action="">
-				  <input type="radio" name="payment" value="hourly"> Hourly<br>
-				  <input type="radio" name="payment" value="commissioned"> Commissioned<br>
-				  <input type="radio" name="payment" value="salaried"> Salaried
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<td>Amount by type</td>
-			<td><input type='text' name='amount'></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input type='submit' value='Create employee' style='background-color: red'></td>
-		</tr>
-		
-	</table>
-
-
-</body>
+	<head>
+		<title>Registrar Empleado</title>
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<h3 class="center">Register Employee</h3>
+			<form method='post' action='/registered_employee'> 
+			<table>
+				<tr>
+					<td class="input-field">
+						<label>CI</label>
+						<input type='text' name='employee_CI'>
+					</td>
+				</tr>
+				<tr>
+					<td class="input-field">
+						<label>Name</label>
+						<input type='text' name='employee_Name' class="validate">
+					</td>
+				</tr>
+				<tr>
+					<td class="input-field">
+						<label>Address</label>
+						<input type='text' name='address'>
+					</td>
+				</tr>
+				<tr>
+					<td class="input-field"><label>Salary Type</label></td>
+					<td>
+						<form action="#">
+							<p>
+						  		<input type="radio" name="payment">
+						  		<label>Hourly</label>
+						  	</p>
+							<p>
+							  	<input type="radio" name="payment">
+							  	<label>Commissioned</label>
+						  	</p>
+						  	<p>
+							  	<input type="radio" name="payment">
+							  	<label>Salaried</label>
+						  	</p>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td class="input-field">
+						<label>Amount by type</label>
+						<input type='text' name='amount'>
+					</td>
+				</tr>
+				<tr>
+					<td><button type='submit' class="waves-effect waves-light btn">Create Employee</button></td>
+				</tr>
+			</table>
+		</div>
+	</body>
 </html>
