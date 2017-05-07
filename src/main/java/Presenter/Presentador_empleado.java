@@ -12,7 +12,7 @@ public class Presentador_empleado {
 	public static String empleado() {
 		
 		VelocityTemplateEngine vte= new VelocityTemplateEngine();
-		vte.asignarDireccionTemplate("src/main/java/Presenter/register_employee.vt");
+		vte.asignarDireccionTemplate("resources/templates/register_employee.vt");
 		vte.unirAlTemplate();
 		return vte.show_template();
 		
@@ -33,7 +33,7 @@ public class Presentador_empleado {
 		if (payment=="salaried")
 			employee.setPaymentClassification(new SalariedClassification(Double.parseDouble(amount)));
 		database.addEmployee(ci, employee);
-		vte.asignarDireccionTemplate("src/main/java/Presenter/empleado.vt");
+		vte.asignarDireccionTemplate("resources/templates/empleado.vt");
 		vte.agregarContext("ci", Integer.toString(ci));
 		vte.agregarContext("nombre", nombre);
 		vte.agregarContext("address", address);
