@@ -1,75 +1,93 @@
+/*
+ * Copyright 2013 Per Wendel
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *  
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package spark.template.velocity;
 
-import static spark.Spark.get;
-
 import java.io.StringWriter;
-import java.util.HashMap;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Properties;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
-import spark.Request;
-import spark.Response;
-//import spark.template.velocity.VelocityEngine;
+import spark.ModelAndView;
+import spark.TemplateEngine;
 
 /**
- * VelocityTemplateRoute example.
+ * Template Engine based on Apache Velocity.
  */
-public final class VelocityTemplateEngine {
-	VelocityEngine ve = new VelocityEngine();
-	VelocityContext context = new VelocityContext();
-	Template t;
-	StringWriter writer = new StringWriter();
-	
-	public VelocityTemplateEngine(){
-		ve.init();	
-		
-	}
-/*	
-    public static void main(final String[] args) {
-    	//get and initialize engine
-    			//VelocityEngine ve = new VelocityEngine();
-    	
-    			ve.init();
-    			
-    			//next, get the template
-    			Template t = ve.getTemplate("src/main/java/Hello.vt");
-    			
-    			//Create a context and add data
-    			VelocityContext context = new VelocityContext();
-    			context.put("first", "Lesly");
-    			context.put("born_in", "Bolivia");
-    			
-    			//now render the template into a stringwriter
-    			StringWriter writer = new StringWriter();
-    			t.merge(context, writer);
-    			
-    			//show the world
-    			System.out.println( writer.toString());
+public class VelocityTemplateEngine extends TemplateEngine {
+
+    private final VelocityEngine velocityEngine;
+    private String encoding;
+
+    /**
+     * Constructor
+     */
+    public VelocityTemplateEngine() {
+        Properties properties = new Properties();
+        properties.setProperty("resource.loader", "class");
+        properties.setProperty(
+                "class.resource.loader.class",
+                "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        this.velocityEngine = new org.apache.velocity.app.VelocityEngine(properties);
     }
-    */
-	
-	public void asignarDireccionTemplate(String direccion){
-    	this.t=ve.getTemplate(direccion);
+
+    /**
+     * Constructor
+     *
+     * @param encoding The encoding to use
+     */
+    public VelocityTemplateEngine(String encoding) {
+        this();
+        this.encoding = encoding;
     }
-	
-    public void agregarContext(String nombre_Variable, String valor){
-    	this.context.put(nombre_Variable, valor);
-    }  
-    
-    public  void unirAlTemplate(){
-    	t.merge(context, writer);
+
+    /**
+     * Constructor
+     *
+     * @param velocityEngine The velocity engine, must not be null.
+     */
+    public VelocityTemplateEngine(VelocityEngine velocityEngine) {
+        if (velocityEngine == null) {
+            throw new IllegalArgumentException("velocityEngine must not be null");
+        }
+        this.velocityEngine = velocityEngine;
     }
-    public String show_template(){
-    	return ( writer.toString());
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String render(ModelAndView modelAndView) {
+        String templateEncoding = Optional.ofNullable(this.encoding).orElse(StandardCharsets.UTF_8.name());
+        Template template = velocityEngine.getTemplate(modelAndView.getViewName(), templateEncoding);
+        Object model = modelAndView.getModel();
+        if (model instanceof Map) {
+            Map<?, ?> modelMap = (Map<?, ?>) model;
+            VelocityContext context = new VelocityContext(modelMap);
+            StringWriter writer = new StringWriter();
+            template.merge(context, writer);
+            return writer.toString();
+        } else {
+            throw new IllegalArgumentException("modelAndView must be of type java.util.Map");
+        }
     }
-    
-    public String construir_y_visualizar(){
-    	unirAlTemplate();
-    	return show_template();
-    	
-    }
-    
+
 }

@@ -1,19 +1,20 @@
-
 import static spark.Spark.*;
 
-import Presenter.Presentador_empleado;
-import payrollcasestudy.entities.Employee;
-import payrollcasestudy.boundaries.PayrollDatabase;
+import java.util.HashMap;
+
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
 
 
-public class Main {
+public class App {
 	public static void main(String[] args) {
-		PayrollDatabase database = PayrollDatabase.globalPayrollDatabase;
-		
 		get("/", (request, response) -> hola());
 		
-		get("/register_employee", (request, response) -> Presentador_empleado.empleado());
-		post("/registered_employee", (request, response) -> Presentador_empleado.responder_registro(request.queryParams("employee_CI"),request.queryParams("employee_Name"),request.queryParams("address"),request.queryParams("payment"),request.queryParams("amount") ));
+		get("/register_employee", (request, response) -> {
+			return new ModelAndView(new HashMap(), "templates/register_employee.vtl");
+		}, new VelocityTemplateEngine());
+		
+//		post("/registered_employee", (request, response) -> Presentador_empleado.responder_registro(request.queryParams("employee_CI"),request.queryParams("employee_Name"),request.queryParams("address"),request.queryParams("payment"),request.queryParams("amount") ));
 		
 		//get("/Show_employees", (request, response) -> MostrarEmpleados();
 	}
