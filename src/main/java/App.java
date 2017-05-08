@@ -2,6 +2,8 @@ import static spark.Spark.*;
 
 import java.util.HashMap;
 
+import payrollcasestudy.boundaries.PayrollDatabase;
+import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.Transaction;
 import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
@@ -22,7 +24,6 @@ public class App {
 		
 		
 		get("/registered_employee", (request, response) ->{
-			
 			HashMap model = new HashMap();
 			String employee_CI = request.queryParams("employee_CI");
 			String employee_Name = request.queryParams("employee_Name");
@@ -32,7 +33,6 @@ public class App {
 			String Salary= request.queryParams("Salary");
 			String Salary_Commissiones = request.queryParams("Salary_Commissiones");
 			String comision_percent=request.queryParams("comision_percent");
-			
 		
 			model.put("employee_CI",employee_CI);
 			model.put("employee_Name", employee_Name);
@@ -59,8 +59,30 @@ public class App {
 			return new ModelAndView(model, "templates/registered_employee.vtl");
 		}, new VelocityTemplateEngine());
 			
-
+		get("/search_employee", (request, response) -> {
+			HashMap model = new HashMap();
+			return new ModelAndView(model, "templates/search_employee.vtl");
+		}, new VelocityTemplateEngine());
 		
+		
+		get("/search_result", (request, response) ->{
+			HashMap model = new HashMap();
+			String employee_CI = request.queryParams("employee_CI");
+			String name;
+			String address;
+			
+			PayrollDatabase database = PayrollDatabase.globalPayrollDatabase;
+			Employee employee = database.getEmployee(Integer.parseInt(employee_CI));
+			name=employee.getName();
+			address=employee.getAddress();
+			
+						
+			model.put("employee_CI",employee_CI);
+			model.put("name",name);
+			model.put("address",address);
+			
+			return new ModelAndView(model, "templates/search_result.vtl");
+		}, new VelocityTemplateEngine());
 		
 		
 	
