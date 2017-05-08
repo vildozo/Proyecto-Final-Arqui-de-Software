@@ -681,3 +681,15 @@ d off : VM system will not automatically reload global library macros
 2017-05-08 02:47:21,992 - ResourceManager : found templates/registered_employee.vtl with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
 2017-05-08 02:47:21,993 - Null reference [template 'templates/registered_employee.vtl', line 8, column 69] : $hourly_Rate cannot be resolved.
 2017-05-08 02:47:21,993 - Null reference [template 'templates/registered_employee.vtl', line 8, column 69] : $hourly_Rate cannot be resolved.
+2017-05-08 03:06:00,278 - ResourceManager : found templates/registered_employee.vtl with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-05-08 03:06:00,278 - ResourceManager : found templates/registered_employee.vtl with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 7, column 13] : $employee_Name cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 7, column 13] : $employee_Name cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 7, column 40] : $employee_CI cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 7, column 40] : $employee_CI cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 8, column 11] : $address cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 8, column 11] : $address cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 8, column 39] : $payment cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 8, column 39] : $payment cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 8, column 69] : $hourly_Rate cannot be resolved.
+2017-05-08 03:06:00,278 - Null reference [template 'templates/registered_employee.vtl', line 8, column 69] : $hourly_Rate cannot be resolved.

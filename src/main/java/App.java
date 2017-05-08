@@ -3,6 +3,8 @@ import static spark.Spark.*;
 import java.util.HashMap;
 
 import payrollcasestudy.transactions.Transaction;
+import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
+import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -40,8 +42,20 @@ public class App {
 			model.put("Salary", Salary);
 			model.put("Salary_Commissiones", Salary_Commissiones);
 			model.put("comision_percent", comision_percent);
-	
-
+			
+			if (payment=="hourly"){
+				Transaction addSalariedEmployeeTransaction = new AddHourlyEmployeeTransaction(Integer.parseInt(employee_CI), employee_Name, address, Double.parseDouble(hourly_Rate));
+		        addSalariedEmployeeTransaction.execute();
+			}
+	 		if (payment=="commissioned"){
+	 			Transaction addSalariedEmployeeTransaction = new AddCommissionedEmployeeTransaction(Integer.parseInt(employee_CI), employee_Name, address,
+	 					Double.parseDouble(Salary_Commissiones), Double.parseDouble(comision_percent));
+		        addSalariedEmployeeTransaction.execute();
+	 		}
+			if (payment=="salaried"){
+				Transaction addSalariedEmployeeTransaction = new AddSalariedEmployeeTransaction(Integer.parseInt(employee_CI), employee_Name, address, Double.parseDouble(Salary));
+		        addSalariedEmployeeTransaction.execute();
+			}
 			return new ModelAndView(model, "templates/registered_employee.vtl");
 		}, new VelocityTemplateEngine());
 			
