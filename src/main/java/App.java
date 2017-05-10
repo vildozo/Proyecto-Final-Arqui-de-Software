@@ -1,5 +1,4 @@
 import static spark.Spark.*;
-
 import java.util.HashMap;
 
 import Presenter.EmployeePresenter;
@@ -13,6 +12,7 @@ public class App {
 	public static void main(String[] args) {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 		String layout = "templates/layout.vtl";
+		staticFileLocation("/public");
 		
 		get("/", (request, response) -> {
 			model.put("template", "templates/main_page.vtl");
