@@ -1,24 +1,45 @@
 import static spark.Spark.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
+import Presenter.Presentador_empleado;
+import payrollcasestudy.boundaries.PayrollDatabase;
+import payrollcasestudy.entities.Employee;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
 
 public class App {
 	public static void main(String[] args) {
+		HashMap<String, Object> model = new HashMap<String, Object>();
+		
 		get("/", (request, response) -> hola());
 		
 		get("/register_employee", (request, response) -> {
-			return new ModelAndView(new HashMap(), "templates/register_employee.vtl");
+			return new ModelAndView(model, "templates/register_employee.vtl");
 		}, new VelocityTemplateEngine());
 		
-//		post("/registered_employee", (request, response) -> Presentador_empleado.responder_registro(request.queryParams("employee_CI"),request.queryParams("employee_Name"),request.queryParams("address"),request.queryParams("payment"),request.queryParams("amount") ));
+		post("/create_employee", (request, response) -> {
+			Presentador_empleado.createEmployee(request.queryParams("employeeId"),
+					request.queryParams("name"),request.queryParams("address"),
+					request.queryParams("paymentClassification"),request.queryParams("amount"),
+					request.queryParams("commission"));
+			response.redirect("/");
+			return null;
+		});
 		
-		//get("/Show_employees", (request, response) -> MostrarEmpleados();
+		get("/search_employee", (request, response) -> {
+			return new ModelAndView(model, "templates/search_employee.vtl");
+		}, new VelocityTemplateEngine());
+		
+		post("/show_employee", (request, response) -> {
+			Employee employee = PayrollDatabase.globalPayrollDatabase.getEmployee(Integer.parseInt(request.queryParams("employeeId")));
+			model.put("employee", employee);
+			return new ModelAndView(model, "templates/show_employee.vtl");
+		}, new VelocityTemplateEngine());
 	}
-
+	
 	private static String hola() {
 		return "<html>"
 				+ "<body>"

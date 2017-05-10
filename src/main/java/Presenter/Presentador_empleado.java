@@ -1,17 +1,28 @@
 package Presenter;
 
-import java.util.HashMap;
+import org.eclipse.jetty.server.Request;
 
-
-import payrollcasestudy.boundaries.PayrollDatabase;
-import spark.ModelAndView;
-import spark.template.velocity.VelocityTemplateEngine;
-import payrollcasestudy.entities.Employee;
-import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
-import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
+import payrollcasestudy.transactions.Transaction;
+import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
+import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
+import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 
 public class Presentador_empleado {
 	
+	private static Transaction addEmployeeTransaction;
+	
+	public static void createEmployee(String employeeId, String name, String address, String paymentClassification, String amount, String commission) {
+		if(paymentClassification.equals("hourly"))
+			addEmployeeTransaction = new AddHourlyEmployeeTransaction(Integer.parseInt(employeeId), name, address, Double.parseDouble(amount));
+		if(paymentClassification.equals("commissioned"))
+			addEmployeeTransaction = new AddCommissionedEmployeeTransaction(Integer.parseInt(employeeId), name, address, Double.parseDouble(amount), Double.parseDouble(commission));
+		if(paymentClassification.equals("salaried"))
+			addEmployeeTransaction = new AddSalariedEmployeeTransaction(Integer.parseInt(employeeId), name, address, Double.parseDouble(amount));
+		addEmployeeTransaction.execute();
+	}
+}
+		
+		
 //	public static String responder_registro( String employee_CI,String nombre,String address,String payment,String amount){
 //		VelocityTemplateEngine vte= new VelocityTemplateEngine();
 //		int ci;
@@ -36,7 +47,3 @@ public class Presentador_empleado {
 //		vte.unirAlTemplate();
 //		return vte.show_template();//"El nuevo empleado tiene ci= "+ ci + " y su nombre es "+nombre+" y su direccion es "+ address;
 //	}
-	
-	
-
-}

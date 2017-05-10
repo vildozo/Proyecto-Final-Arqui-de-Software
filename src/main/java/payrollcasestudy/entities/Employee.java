@@ -12,7 +12,8 @@ public class Employee {
     private PaymentSchedule paymentSchedule;
     private PaymentMethod paymentMethod;
     private int employeeId;
-    private String name;
+
+	private String name;
     private String address;
 	private UnionAffiliation unionAffiliation;
 
@@ -37,6 +38,10 @@ public class Employee {
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public int getEmployeeId() {
+    	return employeeId;
     }
 
     public String getName() {
