@@ -20,7 +20,8 @@ public class App {
 		}, new VelocityTemplateEngine());
 		
 		get("/register_employee", (request, response) -> {
-			return new ModelAndView(model, "templates/register_employee.vtl");
+			model.put("template", "templates/register_employee.vtl");
+			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
 		post("/create_employee", (request, response) -> {
@@ -33,13 +34,15 @@ public class App {
 		});
 		
 		get("/search_employee", (request, response) -> {
-			return new ModelAndView(model, "templates/search_employee.vtl");
+			model.put("template", "templates/search_employee.vtl");
+			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
 		post("/show_employee", (request, response) -> {
 			Employee employee = PayrollDatabase.globalPayrollDatabase.getEmployee(Integer.parseInt(request.queryParams("employeeId")));
 			model.put("employee", employee);
-			return new ModelAndView(model, "templates/show_employee.vtl");
+			model.put("template", "templates/show_employee.vtl");
+			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 	}
 }

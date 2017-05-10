@@ -1,60 +1,47 @@
-<html>
-	<head>
-		<title>Register Employee</title>
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-	</head>
-	<body>
-		<div class="container">
-			<h3 class="center">Register Employee</h3>
-			<form method='post' action='/create_employee'> 
-				<div class="row">
-					<div class="input-field col s6">
-						<input name="employeeId" type="text" class="validate">
-						<label for="employeeId">Employee Id</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s6">
-						<input name="name" type="text" class="validate">
-						<label for="name">Name</label>
-					</div>
-					<div class="input-field col s6">
-						<input name="address" type="text" class="validate">
-						<label for="address">Address</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s2">
-						<label for="classification">Payment Classification</label>
-					</div>
-					<div class="col s4">
-						<p>
-							<input name="paymentClassification" type="radio" id="hourly" value="hourly" />
-							<label for="hourly">Hourly</label>
-						</p>
-						<p>
-							<input name="paymentClassification" type="radio" id="commissioned" value="commissioned" />
-							<label for="commissioned">Commissioned</label>
-						</p>
-						<p>
-							<input name="paymentClassification" type="radio" id="salaried" value="salaried" />
-							<label for="salaried">Salaried</label>
-						</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s6">
-						<input name="amount" type="text" class="validate">
-						<label for="amount">Amount</label>
-					</div>
-				</div>
-				<button class="btn waves-effect waves-light" type="submit" name="register_employee">
-					Register Employee
-				</button>
-			</form>
+<h3>Register Employee</h3>
+	<form method='post' action='/create_employee'> 
+		<div class="row">
+			<div class="input-field col s6">
+				<input name="employeeId" type="text" class="validate">
+				<label for="employeeId">Employee Id</label>
+			</div>
 		</div>
-	</body>
-</html>
+		<div class="row">
+			<div class="input-field col s6">
+				<input name="name" type="text" class="validate">
+				<label for="name">Name</label>
+			</div>
+			<div class="input-field col s6">
+				<input name="address" type="text" class="validate">
+				<label for="address">Address</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				<label for="classification">Payment Classification</label>
+			</div>
+			<div class="col s4">
+				<p>
+					<input name="paymentClassification" type="radio" id="hourly" value="hourly" />
+					<label for="hourly">Hourly</label>
+				</p>
+				<p>
+					<input name="paymentClassification" type="radio" id="commissioned" value="commissioned" />
+					<label for="commissioned">Commissioned</label>
+				</p>
+				<p>
+					<input name="paymentClassification" type="radio" id="salaried" value="salaried" />
+					<label for="salaried">Salaried</label>
+				</p>
+			</div>
+			<div class="input-field col s6">
+				<input name="amount" type="text" class="validate">
+				<label for="amount">Amount</label>
+			</div>
+		</div>
+		<br>
+		<button class="btn waves-effect waves-light" type="submit" name="register_employee">
+			Register Employee
+		</button>
+	</form>
+</div>

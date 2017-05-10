@@ -1,13 +1,12 @@
-<html>
-	<head>
-		<title>Search</title>
-	</head>
-	<body>
-		<h3>Search Employee by Id</h3>
-		<form method='post' action='/show_employee'>
-			<label>Employee Id: </label>
-			<input type='text' name='employeeId'><br>
-			<input type='submit' value'Search Employee'>
-		</form>
-	</body>
-</html>
+<h3>Search Employee by Id</h3>
+<form method='post' action='/show_employee'>
+	<div class="row">
+		<div class="input-field col s6">
+			<input name="employeeId" type="text" class="validate"><br>
+			<label for="employeeId">Employee Id</label>
+		</div>
+	</div>
+	<button class="btn waves-effect waves-light" type="submit" name="search_employee">
+		Search Employee
+	</button>
+</form>
