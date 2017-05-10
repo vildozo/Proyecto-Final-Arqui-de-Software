@@ -12,8 +12,12 @@ import spark.template.velocity.VelocityTemplateEngine;
 public class App {
 	public static void main(String[] args) {
 		HashMap<String, Object> model = new HashMap<String, Object>();
+		String layout = "templates/layout.vtl";
 		
-		get("/", (request, response) -> "Index");
+		get("/", (request, response) -> {
+			model.put("template", "templates/main_page.vtl");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
 		
 		get("/register_employee", (request, response) -> {
 			return new ModelAndView(model, "templates/register_employee.vtl");
