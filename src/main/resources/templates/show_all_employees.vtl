@@ -13,7 +13,6 @@
 	<tbody>
 		#foreach ($employee in $employees)
 			<tr>
-				
 				<td>$employee.getEmployeeId()</td>
 				<td>$employee.getName()</td>
 				<td>$employee.getAddress()</td>
@@ -22,7 +21,9 @@
 					<button class="btn waves-effect waves-light" type="submit" name="register_employee">
 						Show Employee
 					</button>
+					</form>
 				</td>
+				
 			</tr>
 		#end
 	</tbody>
