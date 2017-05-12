@@ -37,4 +37,5 @@ public abstract class AddEmployeeTransaction implements Transaction {
     protected abstract PaymentSchedule getPaymentSchedule();
 
     protected abstract PaymentClassification getPaymentClassification();
+    
 }

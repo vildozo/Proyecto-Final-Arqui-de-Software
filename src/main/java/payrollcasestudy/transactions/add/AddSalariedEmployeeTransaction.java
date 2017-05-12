@@ -23,4 +23,5 @@ public class AddSalariedEmployeeTransaction extends AddEmployeeTransaction{
     protected PaymentClassification getPaymentClassification() {
         return new SalariedClassification(salary);
     }
+
 }
