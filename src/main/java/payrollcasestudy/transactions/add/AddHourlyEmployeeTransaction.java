@@ -22,4 +22,7 @@ public class AddHourlyEmployeeTransaction extends AddEmployeeTransaction {
     protected PaymentClassification getPaymentClassification() {
         return new HourlyPaymentClassification(hourlyRate);
     }
+
+
+	
 }

@@ -17,4 +17,9 @@ public class SalariedClassification extends PaymentClassification {
     public double calculatePay(PayCheck payCheck) {
         return salary;
     }
+
+	@Override
+	public String tipoDeClassificacion() {
+		return "Salaried";
+	}
 }

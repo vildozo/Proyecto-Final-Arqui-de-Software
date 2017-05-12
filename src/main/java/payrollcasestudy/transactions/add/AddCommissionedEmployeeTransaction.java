@@ -28,4 +28,5 @@ public class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction{
     protected PaymentClassification getPaymentClassification() {
         return new CommissionedPaymentClassification(monthlySalary, commissionRate);
     }
+
 }

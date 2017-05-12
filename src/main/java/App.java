@@ -41,8 +41,11 @@ public class App {
 		
 		post("/show_employee", (request, response) -> {
 			Employee employee = PayrollDatabase.globalPayrollDatabase.getEmployee(Integer.parseInt(request.queryParams("employeeId")));
+			String classificacionEmpleado;
+			classificacionEmpleado=employee.getPaymentClassification().tipoDeClassificacion();
 			model.put("employee", employee);
-			model.put("template", "templates/show_employee.vtl");
+			
+			model.put("template", "templates/show_employee"+classificacionEmpleado+".vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 	}

@@ -46,4 +46,9 @@ public class HourlyPaymentClassification extends PaymentClassification{
         double straightTime = hours - overtime;
         return straightTime * hourlyRate + overtime * hourlyRate * 1.5;
     }
+
+	@Override
+	public String tipoDeClassificacion() {
+		return "Hourly";
+	}
 }
