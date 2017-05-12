@@ -38,9 +38,24 @@
 			<input name="amount" type="text" class="validate">
 			<label for="amount">Amount</label>
 		</div>
+		<div id="commissioned-div" style="display:none" class="input-field col s6">
+			<input name="commission" type="text" class="validate">
+			<label for="commission">Commission</label>
+		</div>
 	</div>
-	<br>
 	<button class="btn waves-effect waves-light" type="submit" name="register_employee">
 		Register Employee
 	</button>
 </form>
+<script>
+	$(function() {
+   		$('input[type="radio"]').click(function() {
+       		if($(this).attr('id') == 'commissioned') {
+            	$('#commissioned-div').show();           
+       		}
+       		else {
+            	$('#commissioned-div').hide();   
+       		}
+   		});
+	});
+</script>
