@@ -60,5 +60,6 @@ public class App {
 			model.put("template", "templates/show_all_employees.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
+		
 	}
 }

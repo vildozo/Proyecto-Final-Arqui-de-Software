@@ -13,9 +13,16 @@
 	<tbody>
 		#foreach ($employee in $employees)
 			<tr>
+				
 				<td>$employee.getEmployeeId()</td>
 				<td>$employee.getName()</td>
 				<td>$employee.getAddress()</td>
+				<td> <form method="post" action="/show_employee" >
+					<input type="hidden" name="employeeId" value=$employee.getEmployeeId()>
+					<button class="btn waves-effect waves-light" type="submit" name="register_employee">
+						Show Employee
+					</button>
+				</td>
 			</tr>
 		#end
 	</tbody>
