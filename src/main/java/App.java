@@ -23,7 +23,7 @@ public class App {
 		}, new VelocityTemplateEngine());
 		
 		get("/register_employee", (request, response) -> {
-			model.put("template", "templates/register_employee.vtl");
+			model.put("template", "templates/employee/register_employee.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
@@ -33,11 +33,11 @@ public class App {
 					request.queryParams("paymentClassification"),request.queryParams("amount"),
 					request.queryParams("commission"));
 			response.redirect("/show_all_employees");
-			return new ModelAndView(model, "templates/show_all_employees.vtl");
+			return new ModelAndView(model, "templates/employee/show_all_employees.vtl");
 		}, new VelocityTemplateEngine());
 		
 		get("/search_employee", (request, response) -> {
-			model.put("template", "templates/search_employee.vtl");
+			model.put("template", "templates/employee/search_employee.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
@@ -47,19 +47,17 @@ public class App {
 			classificacionEmpleado=employee.getPaymentClassification().tipoDeClassificacion();
 			model.put("employee", employee);
 			
-			model.put("template", "templates/show_employee"+classificacionEmpleado+".vtl");
+			model.put("template", "templates/employee/show_employee"+classificacionEmpleado+".vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
 		get("/show_all_employees", (request, response) -> {
-
 			ArrayList <Employee> employees =  EmployeePresenter.employeeList;
 			model.put("employees", employees);
 
-			model.put("employees", EmployeePresenter.showAllEmployees());
-			model.put("template", "templates/show_all_employees.vtl");
+			model.put("employees", EmployeePresenter.getListOfEmployees());
+			model.put("template", "templates/employee/show_all_employees.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
-		
 	}
 }

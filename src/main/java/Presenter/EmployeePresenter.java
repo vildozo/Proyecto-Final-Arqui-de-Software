@@ -4,10 +4,6 @@ package Presenter;
 import java.util.ArrayList;
 
 
-import java.util.List;
-
-import payrollcasestudy.boundaries.PayrollDatabase;
-
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.Transaction;
 import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
@@ -30,11 +26,7 @@ public class EmployeePresenter {
 		employeeList.add(new Employee(Integer.parseInt(employeeId), name, address));
 	}
 	
-	public ArrayList<Employee> getListOfEmployees(){
-		return this.employeeList;
-	}
-	
-	public static List<Employee> showAllEmployees() {
-		return PayrollDatabase.globalPayrollDatabase.getAllEmployeeValues();
+	public static ArrayList<Employee> getListOfEmployees(){
+		return employeeList;
 	}
 }
