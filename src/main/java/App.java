@@ -1,4 +1,6 @@
 import static spark.Spark.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import Presenter.EmployeePresenter;
@@ -50,9 +52,14 @@ public class App {
 		}, new VelocityTemplateEngine());
 		
 		get("/show_all_employees", (request, response) -> {
+
+			ArrayList <Employee> employees =  EmployeePresenter.employeeList;
+			model.put("employees", employees);
+
 			model.put("employees", EmployeePresenter.showAllEmployees());
 			model.put("template", "templates/show_all_employees.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
+		
 	}
 }
