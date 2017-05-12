@@ -1,6 +1,12 @@
 package Presenter;
 
+
 import java.util.ArrayList;
+
+
+import java.util.List;
+
+import payrollcasestudy.boundaries.PayrollDatabase;
 
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.Transaction;
@@ -28,5 +34,7 @@ public class EmployeePresenter {
 		return this.employeeList;
 	}
 	
-	
+	public static List<Employee> showAllEmployees() {
+		return PayrollDatabase.globalPayrollDatabase.getAllEmployeeValues();
+	}
 }

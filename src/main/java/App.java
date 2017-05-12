@@ -32,9 +32,9 @@ public class App {
 					request.queryParams("name"),request.queryParams("address"),
 					request.queryParams("paymentClassification"),request.queryParams("amount"),
 					request.queryParams("commission"));
-			response.redirect("/");
-			return null;
-		});
+			response.redirect("/show_all_employees");
+			return new ModelAndView(model, "templates/show_all_employees.vtl");
+		}, new VelocityTemplateEngine());
 		
 		get("/search_employee", (request, response) -> {
 			model.put("template", "templates/search_employee.vtl");
@@ -52,10 +52,12 @@ public class App {
 		}, new VelocityTemplateEngine());
 		
 		get("/show_all_employees", (request, response) -> {
+
 			ArrayList <Employee> employees =  EmployeePresenter.employeeList;
 			model.put("employees", employees);
-			
-			model.put("template", "templates/show_employees.vtl");
+
+			model.put("employees", EmployeePresenter.showAllEmployees());
+			model.put("template", "templates/show_all_employees.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 	}

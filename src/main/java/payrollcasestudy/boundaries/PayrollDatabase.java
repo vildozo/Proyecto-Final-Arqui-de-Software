@@ -47,4 +47,9 @@ public class PayrollDatabase {
     public Set<Integer> getAllEmployeeIds() {
         return employees.keySet();
     }
+    
+    public List<Employee> getAllEmployeeValues() {
+    	List<Employee> employeeValues = new ArrayList<>(employees.values());
+    	return employeeValues;
+    }
 }
