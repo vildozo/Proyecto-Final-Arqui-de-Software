@@ -1,0 +1,22 @@
+<h3>Employees</h3>
+<div class="right">
+	<a href="/register_employee" class="waves-effect waves-light btn">New Employee</a>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Address</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach ($employee in $employees)
+			<tr>
+				<td>$employee.getEmployeeId()</td>
+				<td>$employee.getName()</td>
+				<td>$employee.getAddress()</td>
+			</tr>
+		#end
+	</tbody>
+</table>
