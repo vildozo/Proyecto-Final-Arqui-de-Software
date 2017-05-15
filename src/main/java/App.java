@@ -1,12 +1,14 @@
 import static spark.Spark.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import Presenter.EmployeePresenter;
+import Presenter.PayrollPresenter;
 import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
-
+import payrollcasestudy.transactions.add.AddTimeCardTransaction;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -60,6 +62,51 @@ public class App {
 			model.put("template", "templates/show_all_employees.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
+		
+		
+		get("/add_sales_receipt", (request, response) -> {
+			String employee_Id=(request.queryParams("employee_Id"));
+			model.put("employee_Id", employee_Id);
+			model.put("template", "templates/add_sales_receipt.vtl");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
+//		private Calendar date;
+//	    private double amount;
+//	    private int employeeId;
+		
+		post("/create_sales_receipts", (request, response) -> {
+			
+			PayrollPresenter.createReceiptTransaction(request.queryParams("year"), request.queryParams("month"), request.queryParams("day"), request.queryParams("amount"), request.queryParams("employee_Id"));
+			response.redirect("/show_all_employees");
+			return new ModelAndView(model, "templates/show_all_employees.vtl");
+		}, new VelocityTemplateEngine());
+		
+		
+		get("/add_time_card", (request, response) -> {
+			String employee_Id=(request.queryParams("employee_Id"));
+			model.put("employee_Id", employee_Id);
+			model.put("template", "templates/add_time_card.vtl");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
+		
+		post("/create_time_card", (request, response) -> {
+			PayrollPresenter.createHourlyReceipt(request.queryParams("year"), request.queryParams("month"), request.queryParams("day"), request.queryParams("amount"), request.queryParams("employee_Id"));
+			response.redirect("/show_all_employees");
+			return new ModelAndView(model, "templates/create_time_card.vtl");
+		}, new VelocityTemplateEngine());
+		
+		get("/show_time_cards", (request, response) -> {
+			int employee_Id=Integer.parseInt(request.queryParams("employee_Id"));
+			ArrayList <AddTimeCardTransaction> employeeTimeCardList = new ArrayList<AddTimeCardTransaction> (); 
+			
+			employeeTimeCardList =PayrollPresenter.showTimeCard(employee_Id);
+			model.put("employeeTimeCardList", employeeTimeCardList);
+		
+			model.put("template", "templates/show_time_cards.vtl");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
+		
+		
 		
 	}
 }

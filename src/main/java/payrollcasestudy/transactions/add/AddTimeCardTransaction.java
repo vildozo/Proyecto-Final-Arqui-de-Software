@@ -31,4 +31,18 @@ public class AddTimeCardTransaction implements Transaction {
             }
         }
     }
+    
+    public int getEmployeeId(){
+    	return this.employeeId;
+    }
+    
+    public double getHours(){
+    	return this.hours;
+    }
+    
+    public String getCalendar(){
+    	return this.date.toString();
+    }
+    
+   
 }
