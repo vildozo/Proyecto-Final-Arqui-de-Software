@@ -2,7 +2,7 @@
 <div class="right">
 	<a href="/register_employee" class="waves-effect waves-light btn">New Employee</a>
 </div>
-<table>
+<table class="responsive-table" style="table-layout:fixed">
 	<thead>
 		<tr>
 			<th>Id</th>
@@ -13,12 +13,12 @@
 	<tbody>
 		#foreach ($employee in $employees)
 			<tr>
-				<td>$employee.getEmployeeId()</td>
-				<td>$employee.getName()</td>
-				<td>$employee.getAddress()</td>
-				<td> <form method="post" action="/show_employee" >
+				<td style="width:33%">$employee.getEmployeeId()</td>
+				<td style="width:33%">$employee.getName()</td>
+				<td style="width:33%">$employee.getAddress()</td>
+				<td style="width:33%"> <form method="post" action="/show_employee" >
 					<input type="hidden" name="employeeId" value=$employee.getEmployeeId()>
-					<button class="btn waves-effect waves-light" type="submit" name="register_employee">
+					<button class="btn waves-effect waves-light" style="background-color:#ee6e73" type="submit" name="show">
 						Show Employee
 					</button>
 					</form>
