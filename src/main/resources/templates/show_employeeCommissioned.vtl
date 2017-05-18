@@ -2,10 +2,19 @@
 <p>Ci: $employee.getEmployeeId()</p>
 <p>Name: $employee.getName()</p>
 <p>Address: $employee.getAddress()</p>
+	javier
 	<form method="get" action="/add_sales_receipt">
 		<input type="hidden" name="employee_Id" value=$employee.getEmployeeId()>
-		<button class="btn waves-effect waves-light" type="submit" name="add_sales_reciept">
-			ADD SALES RECEIPT
+		<button class="btn waves-effect waves-light" type="submit" name="add_receipt">
+			ADD SALES RECEIPT  343
+		</button>
+	</form>
+	HOLA MUNDIO
+	<br>
+	<form method="get" action="/show_sales_receipt">
+		<input type="hidden" name="employee_Id" value=$employee.getEmployeeId()>
+		<button class="btn waves-effect waves-light" type="submit" name="show_time_card">
+			SHOW SALES RECEIPT
 		</button>
 	</form>
 

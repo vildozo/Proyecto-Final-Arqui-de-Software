@@ -70,9 +70,8 @@ public class App {
 			model.put("template", "templates/add_sales_receipt.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
-//		private Calendar date;
-//	    private double amount;
-//	    private int employeeId;
+		
+		
 		
 		post("/create_sales_receipts", (request, response) -> {
 			
@@ -81,12 +80,12 @@ public class App {
 			return new ModelAndView(model, "templates/create_sales_receipt.vtl");
 		}, new VelocityTemplateEngine());
 		
-		post("/create_sales_receipt", (request, response) -> {
-			PayrollPresenter.createHourlyReceipt(request.queryParams("year"), request.queryParams("month"), request.queryParams("day"), request.queryParams("amount"), request.queryParams("employee_Id"));
-			PayrollPresenter.createReceiptTransaction(request.queryParams("year"), request.queryParams("month"), request.queryParams("day"), request.queryParams("amount"), request.queryParams("employee_Id"));
-			response.redirect("/show_all_employees");
-			return new ModelAndView(model, "templates/create_sales_receipt.vtl");
-		}, new VelocityTemplateEngine());
+//		post("/create_sales_receipt", (request, response) -> {
+//			PayrollPresenter.createHourlyReceipt(request.queryParams("year"), request.queryParams("month"), request.queryParams("day"), request.queryParams("amount"), request.queryParams("employee_Id"));
+//			PayrollPresenter.createReceiptTransaction(request.queryParams("year"), request.queryParams("month"), request.queryParams("day"), request.queryParams("amount"), request.queryParams("employee_Id"));
+//			response.redirect("/show_all_employees");
+//			return new ModelAndView(model, "templates/create_sales_receipt.vtl");
+//		}, new VelocityTemplateEngine());
 		
 		
 		get("/add_time_card", (request, response) -> {
