@@ -2,25 +2,14 @@
 <form method='post' action='/create_sales_receipts'> 
 	<div class="row">
 		<div class="input-field col s6">
-				<strong>Employee Id: &nbsp;&nbsp;&nbsp;$employee_Id</strong>
+				<strong>Employee Id: &nbsp;&nbsp;&nbsp;$employeeId</strong>
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="input-field col s1">
-			Date
-		</div>
-		<div class="input-field col s2">
-			<input name="year" type="text" class="validate">
-			<label for="year">Year</label>
-		</div>
-		<div class="input-field col s2">
-			<input name="month" type="text" class="validate">
-			<label for="month">Month</label>
-		</div>
-		<div class="input-field col s2">
-			<input name="day" type="text" class="validate">
-			<label for="day">Day</label>
+		<div class="input-field col s6">
+			<input type="text" class="datepicker" name="date">		
+			<label for="date">Date</label>
 		</div>
 	</div>
 	
@@ -30,8 +19,20 @@
 			<label for="amount">Amount</label>
 		</div>
 	</div>
-	
-	<button class="btn waves-effect waves-light" type="submit" name="register_employee">
+	<input type="hidden" name="employeeId" value=$employee.getEmployeeId()>
+	<button class="btn waves-effect waves-light" type="submit" name="add_sales_receipt">
 		Add Sales Receipt
 	</button>
 </form>
+
+<script>
+	$('.datepicker').pickadate({
+			selectMonths: true,
+			selectYears: 15,
+        	formatSubmit: 'yyyy-mm-dd',
+        	hiddenName: true,
+        	onSet: function( date ){
+		        if ( 'select' in date ){ this.close();}
+		    }
+    	});
+</script>

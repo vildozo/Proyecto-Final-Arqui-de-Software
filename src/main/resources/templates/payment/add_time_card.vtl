@@ -2,7 +2,7 @@
 <form method='post' action='/create_time_card'> 
 	<div class="row">
 		<div class="input-field col s6">
-				<strong>Employee Id: &nbsp;&nbsp;&nbsp;$employee_Id</strong>
+				<strong>Employee Id: &nbsp;&nbsp;&nbsp;$employeeId</strong>
 		</div>
 	</div>
 	
@@ -19,11 +19,12 @@
 			<label for="hours">Hours</label>
 		</div>
 	</div>
-	<input type="hidden" name="employee_Id" value=$employee.getEmployeeId()>
+	<input type="hidden" name="employeeId" value=$employee.getEmployeeId()>
 	<button class="btn waves-effect waves-light" type="submit" name="add_time_card">
 		Add Time Card
 	</button>
 </form>
+
 <script>
 	$('.datepicker').pickadate({
 			selectMonths: true,

@@ -44,8 +44,6 @@ public class AddTimeCardTransaction implements Transaction {
     	int year = date.get(Calendar.YEAR);
     	int day = date.get(Calendar.DAY_OF_MONTH);
     	int month = date.get(Calendar.MONTH);
-    	return day + "-" + month + "-" + year;
+    	return day + " - " + month + " - " + year;
     }
-    
-   
 }

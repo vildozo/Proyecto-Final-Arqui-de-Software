@@ -23,6 +23,16 @@
 		</div>
 	</div>
 </div>
-<button class="btn waves-effect waves-light" type="submit" name="add_sales_receipt">
-	ADD SALES RECEIPT
-</button>
+<form method="get" action="/add_sales_receipt">
+	<input type="hidden" name="employeeId" value=$employee.getEmployeeId()>
+	<button class="btn waves-effect waves-light" type="submit" name="add_sales_receipt">
+		ADD SALES RECEIPT
+	</button>
+</form>
+<br>
+<form method="get" action="/show_sales_receipt">
+	<input type="hidden" name="employeeId" value=$employee.getEmployeeId()>
+	<button class="btn waves-effect waves-light" type="submit" name="show_sales_receipt">
+		SHOW SALES RECEIPT
+	</button>
+</form>

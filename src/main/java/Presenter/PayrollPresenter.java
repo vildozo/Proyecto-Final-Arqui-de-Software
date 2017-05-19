@@ -21,31 +21,44 @@ public class PayrollPresenter {
 	public static ArrayList <AddTimeCardTransaction> timeCardList = new ArrayList<AddTimeCardTransaction> (); 
 
 	
-	public static void createReceiptTransaction(String year, String month, String day, String amount, String employeeId){
-		Calendar date = new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-		//transaction =  new AddSalesReceiptTransaction(date, Double.parseDouble(amount), Integer.parseInt(employeeId));
-		//transaction.execute();
-		//salesReceiptList.add(new AddSalesReceiptTransaction(date, Double.parseDouble(amount), Integer.parseInt(employeeId)));
+	public static void createSalesReceipt(String date, String amount, String employeeId) throws ParseException{
+		Date dateParsed = stringToDate(date);
+		Calendar calendar = dateToCalendar(dateParsed);
+
+		transaction =  new AddSalesReceiptTransaction(calendar, Double.parseDouble(amount), Integer.parseInt(employeeId));
+		transaction.execute();
+		salesReceiptList.add(new AddSalesReceiptTransaction(calendar, Double.parseDouble(amount), Integer.parseInt(employeeId)));
 	}
 	
-	public static void createHourlyReceipt(String date, String hours, String employee_Id) throws ParseException{
+	public static void createTimeCard(String date, String hours, String employeeId) throws ParseException{
 		Date dateParsed = stringToDate(date);
 		Calendar calendar = dateToCalendar(dateParsed);
 		
-		Transaction timeCardTransaction = new AddTimeCardTransaction(calendar, Double.parseDouble(hours), Integer.parseInt(employee_Id));
+		Transaction timeCardTransaction = new AddTimeCardTransaction(calendar, Double.parseDouble(hours), Integer.parseInt(employeeId));
 		timeCardTransaction.execute();
-		timeCardList.add(new AddTimeCardTransaction(calendar, Double.parseDouble(hours), Integer.parseInt(employee_Id)));
+		timeCardList.add(new AddTimeCardTransaction(calendar, Double.parseDouble(hours), Integer.parseInt(employeeId)));
 	}
 	
-	public static ArrayList <AddTimeCardTransaction> showTimeCard(int employee_Id){
+	public static ArrayList <AddTimeCardTransaction> showTimeCard(int employeeId){
 		ArrayList <AddTimeCardTransaction> selectedTimeCardList = new ArrayList<AddTimeCardTransaction> (); 
 		for (AddTimeCardTransaction timeCardTransaction : timeCardList) {
-			if (timeCardTransaction.getEmployeeId()==employee_Id){
+			if (timeCardTransaction.getEmployeeId() == employeeId){
 				selectedTimeCardList.add(timeCardTransaction);
 				System.out.println(selectedTimeCardList.size());
 			}
 		}
 		return selectedTimeCardList;
+	}
+	
+	public static ArrayList <AddSalesReceiptTransaction> showSalesReceipt(int employeeId){
+		ArrayList <AddSalesReceiptTransaction> selectedSalesReceiptList = new ArrayList<AddSalesReceiptTransaction> (); 
+		for (AddSalesReceiptTransaction salesReceiptTransaction : salesReceiptList) {
+			if (salesReceiptTransaction.getEmployeeId() == employeeId){
+				selectedSalesReceiptList.add(salesReceiptTransaction);
+				System.out.println(selectedSalesReceiptList.size());
+			}
+		}
+		return selectedSalesReceiptList;
 	}
 	
 	private static Date stringToDate(String date) throws ParseException {
@@ -60,8 +73,6 @@ public class PayrollPresenter {
 		calendar.add(Calendar.MONTH, +1);
 		return calendar;
 	}
-	
-
 }
 
 

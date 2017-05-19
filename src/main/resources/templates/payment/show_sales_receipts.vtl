@@ -1,0 +1,20 @@
+<h3>Sales Receipts</h3>
+
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Amount</th>
+			<th>Calendar</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach ($sales in $employeeSalesReceiptList)
+			<tr>
+				<td>$sales.getEmployeeId()</td>
+				<td>$sales.getAmount()</td>
+				<td>$sales.getCalendar()</td>				
+			</tr>
+		#end
+	</tbody>
+</table>
