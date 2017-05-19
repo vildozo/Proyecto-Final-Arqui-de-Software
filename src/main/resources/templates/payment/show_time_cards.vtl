@@ -1,0 +1,20 @@
+<h3>Time Cards</h3>
+
+
+<table><thead>
+		<tr>
+			<th>Id</th>
+			<th>Hours</th>
+			<th>Calendar</th>
+		</tr>
+	</thead>
+	<tbody>
+		#foreach ($card in $employeeTimeCardList)
+			<tr>
+				<td>$card.getEmployeeId()</td>
+				<td>$card.getHours()</td>
+				<td>$card.getCalendar()</td>				
+			</tr>
+		#end
+	</tbody>
+</table>
