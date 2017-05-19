@@ -29,8 +29,7 @@ public class PayrollPresenter {
 	}
 	
 	public static void createHourlyReceipt(String date, String hours, String employee_Id) throws ParseException{
-		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateParsed = formatDate.parse(date);
+		Date dateParsed = stringToDate(date);
 		Calendar calendar = dateToCalendar(dateParsed);
 		
 		Transaction timeCardTransaction = new AddTimeCardTransaction(calendar, Double.parseDouble(hours), Integer.parseInt(employee_Id));
@@ -49,11 +48,19 @@ public class PayrollPresenter {
 		return selectedTimeCardList;
 	}
 	
+	private static Date stringToDate(String date) throws ParseException {
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateParsed = formatDate.parse(date);
+		return dateParsed;
+	}
+
 	private static Calendar dateToCalendar(Date date) {
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTime(date);
+		calendar.add(Calendar.MONTH, +1);
 		return calendar;
 	}
+	
 
 }
 
