@@ -111,6 +111,10 @@ public class App {
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
+		get("/employee_Affiliation", (request, response) -> {
+			model.put("template", "templates/payment/union_affiliation.vtl");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
 		
 
 	}
