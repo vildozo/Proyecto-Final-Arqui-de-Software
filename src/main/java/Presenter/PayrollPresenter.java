@@ -44,7 +44,6 @@ public class PayrollPresenter {
 		for (AddTimeCardTransaction timeCardTransaction : timeCardList) {
 			if (timeCardTransaction.getEmployeeId() == employeeId){
 				selectedTimeCardList.add(timeCardTransaction);
-				System.out.println(selectedTimeCardList.size());
 			}
 		}
 		return selectedTimeCardList;
@@ -55,7 +54,6 @@ public class PayrollPresenter {
 		for (AddSalesReceiptTransaction salesReceiptTransaction : salesReceiptList) {
 			if (salesReceiptTransaction.getEmployeeId() == employeeId){
 				selectedSalesReceiptList.add(salesReceiptTransaction);
-				System.out.println(selectedSalesReceiptList.size());
 			}
 		}
 		return selectedSalesReceiptList;
