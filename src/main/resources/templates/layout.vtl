@@ -15,6 +15,15 @@
 				<li class="divider"></li>
 				<li><a href="/show_all_employees">Show All</a></li>
 			</ul>
+			
+			<ul id="payment_dropdown" class="dropdown-content">
+				<li><a href="/employee_Affiliation">Union Affiliation</a></li>
+				<li class="divider"></li>
+				<li><a href="/">Papeletas</a></li>
+				<li class="divider"></li>
+				<li><a href="/">Cheques</a></li>
+			</ul>
+			
 			<nav>
 			  <div class="nav-wrapper">
 			    <a href="/" class="brand-logo">
@@ -22,7 +31,12 @@
 			    	Payroll App
 			    </a>
 			    <ul class="right hide-on-med-and-down">
-			      <li><a href="#">Payment</a></li>
+			      <li>
+			      	<a class="dropdown-button" href="#!" data-activates="payment_dropdown" data-beloworigin="true" data-constrainwidth="false">
+			      		Payment
+			      		<i class="material-icons right">arrow_drop_down</i>
+			      	</a>
+			      </li>
 			      <li>
 			      	<a class="dropdown-button" href="#!" data-activates="employee_dropdown" data-beloworigin="true" data-constrainwidth="false">
 			      		Employee
