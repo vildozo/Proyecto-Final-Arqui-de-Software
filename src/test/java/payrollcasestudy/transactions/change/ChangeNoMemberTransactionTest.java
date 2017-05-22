@@ -28,20 +28,20 @@ public class ChangeNoMemberTransactionTest {
                 new AddHourlyEmployeeTransaction(employeeId, "Bill", "Home", 15.25);
         addEmployeeTransaction.execute(repository);
 
-        Employee employee = database.getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         UnionAffiliation unionAffiliation = new UnionAffiliation(memberId,92.1);
         employee.setUnionAffiliation(unionAffiliation);
         assertThat(employee.getUnionAffiliation(), is(unionAffiliation));
 
-        database.addUnionMember(memberId, employee);
-        assertThat(database.getUnionMember(memberId), is(employee));
+        repository.addUnionMember(memberId, employee);
+        assertThat(repository.getUnionMember(memberId), is(employee));
 
         Transaction noMemberTransaction = new ChangeNoMemberTransaction(employeeId);
         noMemberTransaction.execute(repository);
 
-        employee = database.getEmployee(employeeId);
+        employee = repository.getEmployee(employeeId);
         assertThat(employee.getUnionAffiliation(), is(UnionAffiliation.NO_AFFILIATION));
 
-        assertThat(database.getUnionMember(memberId), is(nullValue()));
+        assertThat(repository.getUnionMember(memberId), is(nullValue()));
     }
 }

@@ -26,7 +26,7 @@ public class ChangeNameTransactionTest {
         ChangeNameTransaction changeNameTransaction = new ChangeNameTransaction(employeeId, "Bob");
         changeNameTransaction.execute(repository);
 
-        Employee employee = databaseResource.getInstance().getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         assertThat(employee.getName(), is("Bob"));
     }
 }

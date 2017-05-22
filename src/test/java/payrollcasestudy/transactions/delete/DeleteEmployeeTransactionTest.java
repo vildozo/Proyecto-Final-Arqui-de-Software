@@ -26,13 +26,13 @@ public class DeleteEmployeeTransactionTest {
                 new AddCommissionedEmployeeTransaction(employeeId, "Lance", "Home", 2500.0, 3.2);
         addEmployeeTransaction.execute(repository);
 
-        Employee employee = database.getInstance().getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         assertThat(employee, is(notNullValue()));
 
         DeleteEmployeeTransaction deleteTransaction = new DeleteEmployeeTransaction(employeeId);
         deleteTransaction.execute(repository);
 
-        employee = database.getInstance().getEmployee(employeeId);
+        employee = repository.getEmployee(employeeId);
         assertThat(employee, is(nullValue()));
     }
 

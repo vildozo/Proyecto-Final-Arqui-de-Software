@@ -27,7 +27,7 @@ public class ChangeAddressTransactionTest {
                 new ChangeAddressTransaction(employeeId, "Mars");
         changeAddressTransaction.execute(repository);
 
-        Employee employee = databaseResource.getInstance().getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         assertThat(employee.getAddress(), is("Mars"));
     }
 

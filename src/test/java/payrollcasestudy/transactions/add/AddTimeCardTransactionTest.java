@@ -34,7 +34,7 @@ public class AddTimeCardTransactionTest {
         Transaction timeCardTransaction = new AddTimeCardTransaction(date, 8.0, employeeId);
         timeCardTransaction.execute(repository);
 
-        Employee employee = database.getInstance().getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         assertThat(employee, is(notNullValue()));
 
         PaymentClassification paymentClassification = employee.getPaymentClassification();

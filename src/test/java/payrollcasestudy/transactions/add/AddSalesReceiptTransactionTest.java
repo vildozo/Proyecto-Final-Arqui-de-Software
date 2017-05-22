@@ -36,7 +36,7 @@ public class AddSalesReceiptTransactionTest {
                 new AddSalesReceiptTransaction(date, 1000.0, employeeId);
         salesReceiptTransaction.execute(repository);
 
-        Employee employee = database.getInstance().getEmployee(employeeId);
+        Employee employee = repository.getEmployee(employeeId);
         assertThat(employee, is(notNullValue()));
         PaymentClassification paymentClassification = employee.getPaymentClassification();
         CommissionedPaymentClassification commissionedPaymentClassification =
