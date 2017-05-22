@@ -1,1 +1,27 @@
-<h1>Bienvenido a Union Affiliation</h1>
+<h2> Affiliate employee to Union</h2>
+<br>
+<label>Select Employee</label>
+<form method='post' action='/create_affiliation'>
+	<select class="browser-default">
+	 	<option value="" disabled selected>Choose your employee</option>
+			    #foreach ($employee in $employees)
+					      <option value=$employee.getEmployeeId()>$employee.getName()</option>
+				#end
+	</select>
+	<br>
+	
+	<div class="row">
+		<div class="input-field col s6">
+			<input name="amount" type="text" class="validate">
+			<label for="amount">amount</label>
+		</div>
+	</div>
+	
+	<br>
+	<button class="btn waves-effect waves-light" type="submit" name="register_affiliation">
+		Register Affiliation of Employee
+	</button>
+	
+</form>
+
+ 

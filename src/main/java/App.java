@@ -113,6 +113,8 @@ public class App {
 		}, new VelocityTemplateEngine());
 		
 		get("/employee_Affiliation", (request, response) -> {
+			ArrayList <Employee> employees =  EmployeePresenter.employeeList;
+			model.put("employees", employees);
 			model.put("template", "templates/payment/union_affiliation.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
