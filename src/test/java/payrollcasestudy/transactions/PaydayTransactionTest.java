@@ -1,8 +1,6 @@
 package payrollcasestudy.transactions;
 
-import org.junit.Rule;
 import org.junit.Test;
-import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.MemoryRepository;
 import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.PayCheck;
@@ -22,11 +20,9 @@ import static payrollcasestudy.TestConstants.*;
 
 public class PaydayTransactionTest {
 
-    @Rule
-    public DatabaseResource databaseResource = new DatabaseResource();
     private final GregorianCalendar THURSDAY = new GregorianCalendar(2001, 10, 8);
     private final GregorianCalendar FRIDAY = new GregorianCalendar(2001, 10, 9);
-    private static final MemoryRepository repository = new MemoryRepository();
+    private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testSingleSalariedEmployee() throws Exception {

@@ -1,9 +1,8 @@
 package payrollcasestudy.transactions.add;
 
-import org.junit.Rule;
 import org.junit.Test;
-import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
@@ -21,9 +20,7 @@ import static payrollcasestudy.TestConstants.*;
  */
 public class AddSalariedEmployeeTransactionTest {
 
-    @Rule
-    public DatabaseResource databaseResource = new DatabaseResource();
-    private static final MemoryRepository repository = new MemoryRepository();
+	private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testAddSalariedEmployee(){

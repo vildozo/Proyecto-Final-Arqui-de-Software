@@ -6,7 +6,6 @@ import java.util.HashMap;
 import Presenter.EmployeePresenter;
 import Presenter.SalesReceiptPresenter;
 import Presenter.TimeCardPresenter;
-import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.add.AddTimeCardTransaction;
 import payrollcasestudy.transactions.add.AddSalesReceiptTransaction;
@@ -15,6 +14,7 @@ import spark.template.velocity.VelocityTemplateEngine;
 
 
 public class App {
+	
 	public static void main(String[] args) {
 		HashMap<String, Object> model = new HashMap<String, Object>();
 		String layout = "templates/layout.vtl";
@@ -45,7 +45,7 @@ public class App {
 		}, new VelocityTemplateEngine());
 		
 		post("/show_employee", (request, response) -> {
-			Employee employee = PayrollDatabase.globalPayrollDatabase.getEmployee(Integer.parseInt(request.queryParams("employeeId")));
+			Employee employee = EmployeePresenter.getEmployeeFromMemory(Integer.parseInt(request.queryParams("employeeId")));
 			String classificacionEmpleado = employee.getPaymentClassification().tipoDeClassificacion();
 			model.put("employee", employee);
 			model.put("template", "templates/employee/show_employee"+classificacionEmpleado+".vtl");

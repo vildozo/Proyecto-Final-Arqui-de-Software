@@ -31,4 +31,8 @@ public class EmployeePresenter {
 	public static ArrayList<Employee> getListOfEmployees(){
 		return employeeList;
 	}
+	
+	public static Employee getEmployeeFromMemory(int employeeId) {
+		return repository.getEmployee(employeeId);
+	}
 }

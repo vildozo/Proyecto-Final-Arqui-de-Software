@@ -1,9 +1,8 @@
 package payrollcasestudy.transactions.change;
 
-import org.junit.Rule;
 import org.junit.Test;
-import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
 
@@ -12,9 +11,7 @@ import static org.junit.Assert.assertThat;
 
 public class ChangeAddressTransactionTest {
 
-    @Rule
-    public DatabaseResource databaseResource = new DatabaseResource();
-    private static final MemoryRepository repository = new MemoryRepository();
+	private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testChangeNameTransaction() throws Exception {

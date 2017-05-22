@@ -1,9 +1,8 @@
 package payrollcasestudy.transactions.change;
 
-import org.junit.Rule;
 import org.junit.Test;
-import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 import payrollcasestudy.entities.paymentschedule.MonthlyPaymentSchedule;
@@ -18,9 +17,7 @@ import static payrollcasestudy.TestConstants.*;
 
 public class ChangeSalariedTransactionTest {
 
-    @Rule
-    public DatabaseResource databaseResource = new DatabaseResource();
-    private static final MemoryRepository repository = new MemoryRepository();
+	private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testChangeHourlyTransaction() throws Exception {

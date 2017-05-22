@@ -1,9 +1,8 @@
 package payrollcasestudy.transactions.add;
 
-import org.junit.Rule;
 import org.junit.Test;
-import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.TimeCard;
 import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
@@ -19,9 +18,7 @@ import static org.junit.Assert.assertThat;
 
 public class AddTimeCardTransactionTest {
 
-    @Rule
-    public DatabaseResource database = new DatabaseResource();
-    private static final MemoryRepository repository = new MemoryRepository();
+	private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testTimeCardTransaction(){

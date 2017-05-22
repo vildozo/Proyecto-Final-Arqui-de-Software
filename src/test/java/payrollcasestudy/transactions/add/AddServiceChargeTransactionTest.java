@@ -1,9 +1,8 @@
 package payrollcasestudy.transactions.add;
 
-import org.junit.Rule;
 import org.junit.Test;
-import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.ServiceCharge;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
@@ -18,9 +17,7 @@ import static payrollcasestudy.TestConstants.*;
 
 public class AddServiceChargeTransactionTest {
 
-    @Rule
-    public DatabaseResource database = new DatabaseResource();
-    private static final MemoryRepository repository = new MemoryRepository();
+	private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testAddServiceCharge() throws Exception {

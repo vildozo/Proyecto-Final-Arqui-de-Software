@@ -1,9 +1,8 @@
 package payrollcasestudy.transactions.delete;
 
-import org.junit.Rule;
 import org.junit.Test;
-import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
 
@@ -15,9 +14,7 @@ import static org.junit.Assert.assertThat;
  */
 public class DeleteEmployeeTransactionTest {
 
-    @Rule
-    public DatabaseResource database = new DatabaseResource();
-    private static final MemoryRepository repository = new MemoryRepository();
+	private static final Repository repository = new MemoryRepository();
 
     @Test
     public void testDeleteEmployees() throws Exception {
