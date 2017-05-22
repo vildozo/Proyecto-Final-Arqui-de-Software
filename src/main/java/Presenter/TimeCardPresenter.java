@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.transactions.Transaction;
 import payrollcasestudy.transactions.add.AddTimeCardTransaction;
 
 public class TimeCardPresenter {
+	
+	private static Repository repository = new MemoryRepository();
 	private static Transaction timeCardTransaction;
 	private static ArrayList <AddTimeCardTransaction> timeCardList = new ArrayList<AddTimeCardTransaction> (); 
 
-	
 	public static void createTimeCard(String date, String hours, String employeeId) throws ParseException{
 		Date dateParsed = FormatDate.stringToDate(date);
 		Calendar calendar = FormatDate.dateToCalendar(dateParsed);

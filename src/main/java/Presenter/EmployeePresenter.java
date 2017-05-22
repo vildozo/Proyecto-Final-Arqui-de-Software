@@ -3,7 +3,8 @@ package Presenter;
 
 import java.util.ArrayList;
 
-
+import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.Transaction;
 import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
@@ -12,6 +13,7 @@ import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 
 public class EmployeePresenter {
 	
+	private static Repository repository = new MemoryRepository();
 	private static Transaction addEmployeeTransaction;
 	public static ArrayList <Employee> employeeList = new ArrayList<Employee> ();    
 	

@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import payrollcasestudy.boundaries.MemoryRepository;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.transactions.Transaction;
 import payrollcasestudy.transactions.add.AddSalesReceiptTransaction;
 
 public class SalesReceiptPresenter {
 	
+	private static Repository repository = new MemoryRepository();
 	private static Transaction salesReceiptTransaction;
 	private static ArrayList <AddSalesReceiptTransaction> salesReceiptList = new ArrayList<AddSalesReceiptTransaction> (); 
 
