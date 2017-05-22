@@ -3,6 +3,7 @@ package payrollcasestudy.transactions.add;
 import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.DatabaseResource;
+import payrollcasestudy.boundaries.MemoryRepository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.ServiceCharge;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
@@ -19,13 +20,14 @@ public class AddServiceChargeTransactionTest {
 
     @Rule
     public DatabaseResource database = new DatabaseResource();
+    private static final MemoryRepository repository = new MemoryRepository();
 
     @Test
     public void testAddServiceCharge() throws Exception {
         int employeeId = 2;
         Transaction addEmployeeTransaction =
                 new AddHourlyEmployeeTransaction(employeeId, "Bill", "Home", 15.25);
-        addEmployeeTransaction.execute();
+        addEmployeeTransaction.execute(repository);
 
         Employee employee = database.getInstance().getEmployee(employeeId);
         assertThat(employee, is(notNullValue()));
@@ -38,7 +40,7 @@ public class AddServiceChargeTransactionTest {
 
         Calendar date = new GregorianCalendar(2001, 11, 01);
         AddServiceChargeTransaction addServiceChargeTransaction = new AddServiceChargeTransaction(memberId, date, 12.95);
-        addServiceChargeTransaction.execute();
+        addServiceChargeTransaction.execute(repository);
         ServiceCharge serviceCharge = unionAffiliation.getServiceCharge(date);
         assertThat(serviceCharge, is(notNullValue()));
         assertThat(serviceCharge.getAmount(), is(closeTo(12.95, FLOAT_ACCURACY)));

@@ -22,7 +22,7 @@ public class EmployeePresenter {
 			addEmployeeTransaction = new AddCommissionedEmployeeTransaction(Integer.parseInt(employeeId), name, address, Double.parseDouble(amount), Double.parseDouble(commission));
 		if(paymentClassification.equals("salaried"))
 			addEmployeeTransaction = new AddSalariedEmployeeTransaction(Integer.parseInt(employeeId), name, address, Double.parseDouble(amount));
-		addEmployeeTransaction.execute();
+		addEmployeeTransaction.execute(repository);
 		employeeList.add(new Employee(Integer.parseInt(employeeId), name, address));
 	}
 	

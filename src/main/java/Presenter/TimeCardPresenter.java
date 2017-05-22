@@ -18,7 +18,7 @@ public class TimeCardPresenter {
 		Calendar calendar = FormatDate.dateToCalendar(dateParsed);
 		
 		timeCardTransaction = new AddTimeCardTransaction(calendar, Double.parseDouble(hours), Integer.parseInt(employeeId));
-		timeCardTransaction.execute();
+		timeCardTransaction.execute(repository);
 		timeCardList.add(new AddTimeCardTransaction(calendar, Double.parseDouble(hours), Integer.parseInt(employeeId)));
 	}
 	

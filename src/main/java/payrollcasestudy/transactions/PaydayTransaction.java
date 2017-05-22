@@ -1,6 +1,7 @@
 package payrollcasestudy.transactions;
 
 import payrollcasestudy.boundaries.PayrollDatabase;
+import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.PayCheck;
 
@@ -15,9 +16,9 @@ public class PaydayTransaction implements Transaction{
         this.payDate = payDate;
     }
 
-    public void execute() {
-        for (Integer employeeId: database.getAllEmployeeIds()){
-            Employee employee = database.getEmployee(employeeId);
+    public void execute(Repository repository) {
+        for (Integer employeeId: repository.getAllEmployeeIds()){
+            Employee employee = repository.getEmployee(employeeId);
             if (employee.isPayDate(payDate)){
                 PayCheck payCheck = new PayCheck(employee.getPayPeriodStartDay(payDate),payDate);
                 payChecks.put(employeeId, payCheck);

@@ -18,7 +18,7 @@ public class SalesReceiptPresenter {
 		Calendar calendar = FormatDate.dateToCalendar(dateParsed);
 	
 		salesReceiptTransaction =  new AddSalesReceiptTransaction(calendar, Double.parseDouble(amount), Integer.parseInt(employeeId));
-		salesReceiptTransaction.execute();
+		salesReceiptTransaction.execute(repository);
 		salesReceiptList.add(new AddSalesReceiptTransaction(calendar, Double.parseDouble(amount), Integer.parseInt(employeeId)));
 	}
 

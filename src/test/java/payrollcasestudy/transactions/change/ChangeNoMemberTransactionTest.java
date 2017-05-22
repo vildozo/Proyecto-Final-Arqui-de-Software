@@ -3,6 +3,7 @@ package payrollcasestudy.transactions.change;
 import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.DatabaseResource;
+import payrollcasestudy.boundaries.MemoryRepository;
 import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
@@ -15,6 +16,7 @@ import static org.junit.Assert.assertThat;
 public class ChangeNoMemberTransactionTest {
     @Rule
     public DatabaseResource databaseResource = new DatabaseResource();
+    private static final MemoryRepository repository = new MemoryRepository();
 
     @Test
     public void testChangeMemberTransaction() throws Exception {
@@ -24,7 +26,7 @@ public class ChangeNoMemberTransactionTest {
         int memberId = 7734;
         Transaction addEmployeeTransaction =
                 new AddHourlyEmployeeTransaction(employeeId, "Bill", "Home", 15.25);
-        addEmployeeTransaction.execute();
+        addEmployeeTransaction.execute(repository);
 
         Employee employee = database.getEmployee(employeeId);
         UnionAffiliation unionAffiliation = new UnionAffiliation(memberId,92.1);
@@ -35,7 +37,7 @@ public class ChangeNoMemberTransactionTest {
         assertThat(database.getUnionMember(memberId), is(employee));
 
         Transaction noMemberTransaction = new ChangeNoMemberTransaction(employeeId);
-        noMemberTransaction.execute();
+        noMemberTransaction.execute(repository);
 
         employee = database.getEmployee(employeeId);
         assertThat(employee.getUnionAffiliation(), is(UnionAffiliation.NO_AFFILIATION));

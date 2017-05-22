@@ -8,7 +8,7 @@ import payrollcasestudy.entities.Employee;
 
 public class MemoryRepository implements Repository{
 
-	public static MemoryRepository globalPayrollDatabase = new MemoryRepository();
+	public static MemoryRepository memoryDatabase = new MemoryRepository();
 	public Map<Integer, Employee> unionMembers = new HashMap<Integer, Employee>();
 	private Map<Integer, Employee> employees = new HashMap<Integer, Employee>();
 	
