@@ -7,6 +7,7 @@ public class main {
 
 	public static void main(String[] args) {
 		MyDataAccess connexion = new MyDataAccess();
+		String query;
 		
 		ResultSet resultado;
 		String names;
@@ -22,7 +23,12 @@ public class main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		System.out.println("---------------------------------");
+		query="INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`) VALUES ('7772', 'Miguel gamboa', 'america');";
+		connexion.setQuery(query);
+		
 	}
+    
 
 }

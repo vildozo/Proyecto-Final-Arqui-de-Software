@@ -64,4 +64,8 @@ public class MyDataAccess {
             e.printStackTrace();
        }
 	}
+	
+	public String getDataBaseName(){
+		return _bd;
+	}
 }
