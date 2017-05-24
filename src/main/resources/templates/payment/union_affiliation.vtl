@@ -2,13 +2,20 @@
 <br>
 <label>Select Employee</label>
 <form method='post' action='/create_affiliation'>
-	<select class="browser-default">
+	<select name="employeeId" class="browser-default">
 	 	<option value="" disabled selected>Choose your employee</option>
 			    #foreach ($employee in $employees)
-					      <option value=$employee.getEmployeeId()>$employee.getName()</option>
+					    <option name="employeeId" value=$employee.getEmployeeId()>$employee.getName()</option>
 				#end
 	</select>
 	<br>
+	
+	<div class="row">
+		<div class="input-field col s6">
+			<input name="memberId" type="text" class="validate">
+			<label for="memberId">Member Id</label>
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="input-field col s6">

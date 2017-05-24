@@ -3,6 +3,7 @@ import static spark.Spark.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Presenter.AffiliationPresenter;
 import Presenter.EmployeePresenter;
 import Presenter.SalesReceiptPresenter;
 import Presenter.TimeCardPresenter;
@@ -119,6 +120,11 @@ public class App {
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
-
+		post("/create_affiliation", (request, response) -> {
+			AffiliationPresenter.createUnionAffiliation(request.queryParams("employeeId"),
+					request.queryParams("memberId"), request.queryParams("amount"));
+			response.redirect("/show_all_employees");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
 	}
 }
