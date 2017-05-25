@@ -1,5 +1,6 @@
 package payrollcasestudy.boundaries;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import payrollcasestudy.entities.Employee;
@@ -13,4 +14,5 @@ public interface Repository {
     public void addUnionMember(int memberId, Employee employee);
     public void deleteUnionMember(int memberId);
     public Set<Integer> getAllEmployeeIds();
+    public ArrayList <Employee> loadEmployees();
 }

@@ -25,7 +25,7 @@ public class main {
 		}
 		
 		System.out.println("---------------------------------");
-		query="INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`) VALUES ('7772', 'Miguel gamboa', 'america');";
+		query="INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`) VALUES ('33', 'aaa', 'america');";
 		connexion.setQuery(query);
 		
 	}

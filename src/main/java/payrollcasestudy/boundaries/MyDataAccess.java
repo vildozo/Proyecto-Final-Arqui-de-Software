@@ -53,19 +53,19 @@ public class MyDataAccess {
 	
 	//INSERT,UPDATE, DELETE
 	public void setQuery(String _query){
-
+		System.out.println("ME ENCUENTRO EN SETQUERY");
 		Statement state = null;
 		
 		try{			
 			state=(Statement) conn.createStatement();
+			System.out.println("ME ENCUENTRO EN TRY");
 			state.execute(_query);
 
          } catch (SQLException e){
             e.printStackTrace();
+            System.out.println("3333333333333333333333333333333333333333333333333333333333333333333333333");
        }
 	}
 	
-	public String getDataBaseName(){
-		return _bd;
-	}
+	
 }

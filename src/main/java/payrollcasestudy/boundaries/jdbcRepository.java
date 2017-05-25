@@ -47,8 +47,14 @@ public class jdbcRepository implements Repository{
 
 	@Override
 	public void addEmployee(int employeeId, Employee employee) {
+		String name = employee.getName();
+		String address = employee.getAddress();
+		String query;
 		employees.put(employeeId, employee);
-		query="INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`) VALUES (getString(employeeId), employee.getName(), employee.getAddress());";
+		query=employeeId+",'"+name+"','"+address;
+		query="INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`) VALUES (" + query + "');";
+		System.out.println("***************************************************");
+		System.out.println(query);
 		connection.setQuery(query);
 		
 		

@@ -1,5 +1,6 @@
 package payrollcasestudy.boundaries;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -51,6 +52,12 @@ public class MemoryRepository implements Repository{
 	@Override
 	public Set<Integer> getAllEmployeeIds() {
 		return employees.keySet();
+	}
+
+	@Override
+	public ArrayList<Employee> loadEmployees() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
