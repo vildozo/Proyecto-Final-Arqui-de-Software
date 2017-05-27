@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import Presenter.AffiliationPresenter;
 import Presenter.EmployeePresenter;
+import Presenter.PaydayPresenter;
 import Presenter.SalesReceiptPresenter;
 import Presenter.TimeCardPresenter;
 import payrollcasestudy.boundaries.MemoryRepository;
@@ -127,6 +128,29 @@ public class App {
 		post("/create_affiliation", (request, response) -> {
 			AffiliationPresenter.createUnionAffiliation(request.queryParams("employeeId"),
 					request.queryParams("memberId"), request.queryParams("amount"));
+			response.redirect("/show_all_employees");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
+		
+		get("/add_pay_day", (request, response) -> {
+			String employeeId = (request.queryParams("employeeId"));
+			model.put("employeeId", employeeId);
+			model.put("template", "templates/payment/payday.vtl");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
+		
+		post("/create_pay_day", (request, response) -> {
+			PaydayPresenter.createPayday(request.queryParams("date"));
+			response.redirect("/show_all_employees");
+			return new ModelAndView(model, layout);
+		}, new VelocityTemplateEngine());
+		
+		get("/show_payment", (request, response) -> {
+			//PaydayPresenter.createPayday(request.queryParams("emplyee"));
+			String employeeId = (request.queryParams("employee"));
+			Employee employee = EmployeePresenter.getEmployeeFromMemory(Integer.parseInt(employeeId));
+		
+			
 			response.redirect("/show_all_employees");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());

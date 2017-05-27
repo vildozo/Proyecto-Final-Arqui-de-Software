@@ -5,7 +5,7 @@
 	<select name="employeeId" class="browser-default">
 	 	<option value="" disabled selected>Choose your employee</option>
 			    #foreach ($employee in $employees)
-					    <option name="employeeId" value=$employee.getEmployeeId()>$employee.getName()</option>
+					    <option value=$employee.getEmployeeId()>$employee.getName()</option>
 				#end
 	</select>
 	<br>
