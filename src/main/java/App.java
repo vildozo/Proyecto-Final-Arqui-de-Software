@@ -12,6 +12,7 @@ import payrollcasestudy.boundaries.MemoryRepository;
 import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.boundaries.jdbcRepository;
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.transactions.add.AddTimeCardTransaction;
 import payrollcasestudy.transactions.add.AddSalesReceiptTransaction;
 import spark.ModelAndView;
@@ -141,18 +142,22 @@ public class App {
 		
 		post("/create_pay_day", (request, response) -> {
 			PaydayPresenter.createPayday(request.queryParams("date"));
-			response.redirect("/show_all_employees");
+			String employeeId = (request.queryParams("employeeId"));
+			model.put("employeeId", employeeId);
+			response.redirect("/show_payment");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
 		get("/show_payment", (request, response) -> {
-			//PaydayPresenter.createPayday(request.queryParams("emplyee"));
+			//PaydayPresenter.createPayday(request.queryParams("employeeId"));
 			String employeeId = (request.queryParams("employee"));
-			Employee employee = EmployeePresenter.getEmployeeFromMemory(Integer.parseInt(employeeId));
-		
-			
-			response.redirect("/show_all_employees");
+			PayCheck cheque= PaydayPresenter.getPayCheckForEmployee(Integer.parseInt(employeeId));
+			model.put("employeeId", employeeId);
+			model.put("amount", cheque.getGrossPay());
+			model.put("template", "templates/payment/show_payday_for_employee.vtl");
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
+		
+	  
 	}
 }
