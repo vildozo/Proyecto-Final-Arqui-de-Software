@@ -8,6 +8,7 @@ import Presenter.EmployeePresenter;
 import Presenter.PaydayPresenter;
 import Presenter.SalesReceiptPresenter;
 import Presenter.TimeCardPresenter;
+import json.JsonUtil;
 import payrollcasestudy.boundaries.MemoryRepository;
 import payrollcasestudy.boundaries.Repository;
 import payrollcasestudy.boundaries.jdbcRepository;
@@ -158,6 +159,6 @@ public class App {
 			return new ModelAndView(model, layout);
 		}, new VelocityTemplateEngine());
 		
-	  
+		get("/employees", (request, response) -> EmployeePresenter.getListOfEmployees(), JsonUtil.json());
 	}
 }
