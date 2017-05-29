@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.Set;
 
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
+import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 
 public class jdbcRepository implements Repository{
 	MyDataAccess connection = new MyDataAccess();
@@ -49,10 +52,29 @@ public class jdbcRepository implements Repository{
 	public void addEmployee(int employeeId, Employee employee) {
 		String name = employee.getName();
 		String address = employee.getAddress();
+		double amount=0;
+		double commision=0;
 		String query;
 		employees.put(employeeId, employee);
-		query=employeeId+",'"+name+"','"+address;
-		query="INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`) VALUES (" + query + "');";
+		String tipo = employee.getPaymentClassification().tipoDeClassificacion();
+		if (tipo == "hourly"){
+			HourlyPaymentClassification hourlyClassification =  (HourlyPaymentClassification) employee.getPaymentClassification();
+			amount=hourlyClassification.getHourlyRate();
+		}
+		if (tipo == "salaried"){
+			SalariedClassification classification =  (SalariedClassification) employee.getPaymentClassification();
+			amount=classification.getSalary();
+		}
+		if (tipo == "commissioned"){
+			CommissionedPaymentClassification classification =  (CommissionedPaymentClassification) employee.getPaymentClassification();
+			amount=classification.getMonthlySalary();
+			commision=classification.getCommissionRate();
+		}
+		query=employeeId+",'"+name+"','"+address+"','"+tipo+"','"+amount+"','"+commision;
+		
+		query="INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`, `paymentClassification`,`amount`, `commission`) VALUES (" + query + "');";
+		//    "INSERT INTO `payroll`.`employee` (`employeeId`, `name`, `address`, `paymentClassification`, `amount`, `commission`) VALUES ('78', 'Carlos', 'Mesa', 'hourly', '88', '0');";
+		
 		System.out.println("***************************************************");
 		System.out.println(query);
 		connection.setQuery(query);

@@ -46,6 +46,6 @@ public class CommissionedPaymentClassification extends PaymentClassification {
 
 	@Override
 	public String tipoDeClassificacion() {
-		return "Commissioned";
+		return "commissioned";
 	}
 }

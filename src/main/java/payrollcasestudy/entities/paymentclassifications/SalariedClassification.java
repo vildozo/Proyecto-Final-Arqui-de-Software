@@ -20,6 +20,6 @@ public class SalariedClassification extends PaymentClassification {
 
 	@Override
 	public String tipoDeClassificacion() {
-		return "Salaried";
+		return "salaried";
 	}
 }

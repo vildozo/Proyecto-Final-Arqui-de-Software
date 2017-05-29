@@ -48,6 +48,6 @@ public class HourlyPaymentClassification extends PaymentClassification{
 
 	@Override
 	public String tipoDeClassificacion() {
-		return "Hourly";
+		return "hourly";
 	}
 }
